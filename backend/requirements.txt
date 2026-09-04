@@ -1,0 +1,11 @@
+numpy
+pandas
+cvxpy
+pyscipopt
+yfinance
+fastapi
+uvicorn[standard]
+pydantic
+python-calamine
+olefile
+python-multipart

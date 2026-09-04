@@ -1,0 +1,17 @@
+# Runtime state - PIDs, logs, the uploaded-portfolio database, and any
+# workbook a user has actually uploaded. Never committed: this is where real
+# holdings data lives once someone runs the app.
+.data/
+
+# Python
+backend/.venv/
+__pycache__/
+*.pyc
+
+# Node / frontend
+frontend/node_modules/
+frontend/dist/
+
+# OS cruft
+.DS_Store
+Thumbs.db

@@ -795,7 +795,8 @@ export default function App() {
         <div className="upload-page">
           <h2>Upload a portfolio</h2>
           <p className="hint">
-            Upload an OSIP portfolio workbook (.xls) to optimize against real holdings instead of the demo
+            Upload an OSIP-format portfolio workbook (.xls) - one specific report layout this parser was built
+            for, not a general spreadsheet importer - to optimize against real holdings instead of the demo
             universe. Position weights are derived from carrying value per ISIN; each instrument's own price
             history is then fetched to estimate return/risk.
           </p>

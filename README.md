@@ -13,12 +13,16 @@ capital coming in or capital being withdrawn.
 
 - **Demo** - a curated set of S&P sector ETFs (or a random sample of S&P 500
   names), with real price history pulled from Yahoo Finance.
-- **Uploaded** - upload an OSIP-format holdings workbook (`.xls`) and the app
-  parses it into real positions, resolves each ticker's own price history,
-  and estimates return/risk from there. A second, optional upload
+- **Uploaded** - upload a holdings workbook (`.xls`) and the app parses it
+  into real positions, resolves each ticker's own price history, and
+  estimates return/risk from there. The parser targets one specific
+  spreadsheet architecture (an "OSIP" workbook - a particular custom report
+  layout, column contract, and formula set) it was built and tested against;
+  it isn't a general-purpose "any portfolio spreadsheet" importer, and won't
+  recognize a workbook laid out differently. A second, optional upload
   ("Отчет о соблюдении лимитов инвестирования") pulls in real regulatory
-  position caps and matches them against the parsed holdings' own
-  sector/country/currency/issuer groupings.
+  position caps against that same specific report format, and matches them
+  against the parsed holdings' own sector/country/currency/issuer groupings.
 
 **Two modes:**
 
@@ -53,8 +57,10 @@ plotted alongside wherever your actual portfolio (before and after) lands.
   effective-N), `modes.py` (`solve_new_portfolio`, `solve_existing_portfolio`,
   the flows solve, frontier/return-bounds helpers), `data.py` (the demo
   universe).
-- `backend/ingestion/` - parses real OSIP holdings workbooks and the
-  regulatory risk-limits workbook into the solver's own inputs.
+- `backend/ingestion/` - parses that one specific OSIP workbook layout (and
+  its matching regulatory risk-limits report) into the solver's own inputs;
+  see the caveat above - adapting it to a different holdings export means
+  writing a new parser here, not reconfiguring this one.
 - `backend/app/` - FastAPI wrapper (`main.py`, `schemas.py`, `storage.py` -
   a small SQLite store for uploaded portfolios/risk limits).
 - `backend/smoke_test.py` - scripted end-to-end check of both modes, run
